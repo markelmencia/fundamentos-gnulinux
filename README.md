@@ -1,2 +1,2 @@
-# 0xdeusto-gnulinux
-Curso introductorio sobre GNU/Linux
+# 0xDeusto: GNU/Linux
+Curso introductorio sobre GNU/Linux para 0xDeusto
