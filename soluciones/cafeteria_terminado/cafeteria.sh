@@ -15,9 +15,28 @@ read opcion_accion # Lee la entrada y la guarda en opcion_accion
 
 if [ $opcion_accion -eq 0 ]; then # El usuario quiere comprar
 
-    echo ""
-    echo "Menú de la cafetería"
-    seleccionar_producto # Función en user_utils.sh
+    echo "Deseas seleccionar un producto manualmente o aleatoriamente?"
+    echo "- 0) Manualmente"
+    echo "- 1) Aleatoriamente"
+    read opcion_seleccion
+
+    if [ $opcion_seleccion -eq 0 ]; then
+
+        seleccionar_producto # Función en user_utils.sh
+
+    elif [ $opcion_seleccion -eq 1 ]; then
+
+        seleccionar_producto_aleatoriamente # Función en user_utils.sh
+
+    else
+
+        echo "cafeteria.sh: Opción de selección incorrecta."
+
+    fi
+
+
+    
+    
 
 elif [ $opcion_accion -eq 1 ]; then # El usuario quiere hacer ajustes de administrador
 
@@ -33,4 +52,3 @@ else
     echo "cafeteria.sh: Error, opción inválida"
 
 fi
-
