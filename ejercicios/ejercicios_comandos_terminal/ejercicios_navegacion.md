@@ -1,5 +1,5 @@
 # Ejercicios de navegación en terminal
-En estos ejercicios se trabajarán comandos que nos ayudan a **conocer y navegar** por entornos de ficheros
+En estos ejercicios se trabajarán comandos que nos ayudan a **conocer y navegar** por entornos de ficheros.
 
 ## Comandos a utilizar
 - `cd`

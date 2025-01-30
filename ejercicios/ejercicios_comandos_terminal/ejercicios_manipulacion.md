@@ -1,5 +1,5 @@
 # Ejercicios de manipulación de entornos de ficheros
-En estos ejercicios se trabajarán comandos para crear/eliminar ficheros o directorios
+En estos ejercicios se trabajarán comandos para crear/eliminar ficheros o directorios.
 
 ## Comandos a utilizar
 - `mkdir`

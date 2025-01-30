@@ -1,5 +1,5 @@
 # Ejercicios de comodines de texto y pipes
-En estos ejercicios se trabajarán formas de usar comodines de texto y diferentes usos de la redirección y el pipelining
+En estos ejercicios se trabajarán formas de usar comodines de texto y diferentes usos de la redirección y el pipelining.
 
 ## Comandos a utilizar
 - `grep`

@@ -1,5 +1,5 @@
 # Ejercicios de lectura y escritura de ficheros
-En estos ejercicios se trabajarán comandos para leer y escribir ficheros
+En estos ejercicios se trabajarán comandos para leer y escribir ficheros.
 
 ## Comandos a utilizar
 - `cat`

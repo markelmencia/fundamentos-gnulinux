@@ -1,5 +1,6 @@
 # Ejercicios de permisos de ficheros
-En estos ejercicios se trabajarán comandos para modificar los permisos de un fichero
+En estos ejercicios se trabajarán comandos para modificar los permisos de un fichero.
+
 
 ## Comandos a utilizar
 - `chmod`
