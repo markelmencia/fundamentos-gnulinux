@@ -5,11 +5,15 @@ seleccionar_producto(){
 
     # Función que imprime todos los productos disponibles junto con sus precios, accediendo a productos/
 
-    array_productos=($(ls productos/)) # Crea un array con el nombre de cada fichero en productos/
+     echo ""
+    echo "Menú de la cafetería"
 
+    # EJERCICIO 8: Crea un array que contenga el nombre de cada producto
+    # EJERCICIO 13: Convierte este bucle en uno que intere sobre índices
     for producto in ${array_productos[@]}; do
         echo "$producto:" "$(cat productos/$producto)€" # Imprime el nombre y precio de cada producto
     done
+    # EJERCICIO 14: Al terminar, conviertelo en un bucle while
 
     echo ""
     echo "¿Qué producto quieres comprar? (escribe el nombre exacto)"
@@ -24,7 +28,7 @@ seleccionar_producto(){
     else # Si el fichero existe
 
         echo "Marchando: $opcion_compra"
-        registrar_compra $opcion_compra $(cat productos/$opcion_compra) # Registra la compra, con el nombre y el precio del producto como parámetro
+        registrar_compra # EJERCICIO 15: Proporciona los argumentos necesarios para que se ejecute esta función
         
     fi
 }
@@ -36,18 +40,15 @@ registrar_compra(){
     #   PARÁMETRO 1: Nombre del producto comprado
     #   PARÁMETRO 2: Precio del producto comprado
 
-    nombre_fichero="compra_$RANDOM" # Nombre que se le asigna al fichero, con ID aleatoria
-    nombre_producto=$1 # Nombre del producto
-    precio_producto=$2 # Precio del producto
-    fecha=$(date) # Salida del comando date almacenada
-    usuario=$(whoami) # Salida del comando whoami (devuelve nombre de usuario) almacenada
+    # EJERCICIO 2: Define la variable numero_aleatorio para que almacene un número aleatorio
 
-    ## TODO: esto podría ser un ejercicio >>
+    nombre_fichero="compra_$numero_aleatorio" # Nombre que se le asigna al fichero, con ID aleatoria
     touch compras/$nombre_fichero # Crea el fichero
 
-    # Añade los datos
-    echo "Usuario: $usuario" >> compras/$nombre_fichero 
-    echo "Producto: $nombre_producto" >> compras/$nombre_fichero
-    echo "Precio: $precio_producto" >> compras/$nombre_fichero
-    echo "Fecha: $fecha" >> compras/$nombre_fichero
+    # EJERCICIO 6: Crea un array con el nombre de usuario, el nombre del producto comprado, su precio y la fecha como elementos.
+    # EJERCICIO 7: Añade los datos al fichero compras/$nombre_fichero
+
 }
+
+
+# EJERCICIO 16: Diseña una función que le compre al cliente un producto aleatorio

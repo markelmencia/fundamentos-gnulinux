@@ -15,8 +15,8 @@ read opcion_accion # Lee la entrada y la guarda en opcion_accion
 
 if [ $opcion_accion -eq 0 ]; then # El usuario quiere comprar
 
-    echo ""
-    echo "Menú de la cafetería"
+    # EJERCICIO 16: Escribe el código necesario para que se ejecute bien la función que has diseñado
+
     seleccionar_producto # Función en user_utils.sh
 
 elif [ $opcion_accion -eq 1 ]; then # El usuario quiere hacer ajustes de administrador
