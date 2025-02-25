@@ -4,7 +4,7 @@ Curso introductorio sobre GNU/Linux para el grupo 0xDeusto.
 Este curso se centra en los fundamentos del sistema operativo libre **GNU/Linux**, desde su historia brevemente descrita hasta el uso de la terminal de comandos.
 
 ## Objetivo
-El objetivo del curso es proporcionar al interesado o interesa una guía a seguir para el aprendizaje del uso del sistema operativo, hasta el punto de poder utilizarlo de forma **cotidiana** para realizar tareas informáticas, tanto de forma gráfica como mediante una terminal.
+El objetivo del curso es proporcionar al interesado o interesada una guía a seguir para el aprendizaje del uso del sistema operativo, hasta el punto de poder utilizarlo de forma **cotidiana** para realizar tareas informáticas, tanto de forma gráfica como mediante una terminal.
 
 ## Recursos
 Para facilitar el aprendizaje de GNU/Linux, este curso ofrece:
