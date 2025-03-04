@@ -11,9 +11,9 @@ Para facilitar el aprendizaje de GNU/Linux, este curso ofrece:
 
 - Un **libro de apuntes** con diferentes temas del sistema, accesible desde [Google Docs](https://docs.google.com/document/d/1yMlr9AgBvUK2QCFYUT-2u7df2hNdHLt5DSHE0F_xZCU/edit?tab=t.0) o en formato **PDF** (en este repositorio).
 - Una serie de **ejercicios** con soluciones, tanto temáticos como sueltos, disponibles en este repositorio (más información en el directorio `ejercicios`).
-- Un **manual de instalación** de la distribución de **Ubuntu Desktop** con Windows (mediante Dual Boot), también accesible desde [Google Docs](https://docs.google.com/document/d/1W6Rq2tVAha_787HKFZK8qvAA6RqIss2WUu_ikEVuFsY/edit?usp=sharing) o en formato **PDF**.
+- Un **manual de instalación** de la distribución de **Ubuntu Desktop** con Windows (mediante **Dual Boot**), también accesible desde [Google Docs](https://docs.google.com/document/d/1W6Rq2tVAha_787HKFZK8qvAA6RqIss2WUu_ikEVuFsY/edit?usp=sharing) o en formato **PDF**.
 
-## Libro de apuntes
+### Libro de apuntes
 El libro de apuntes consta de cinco temas sobre diferentes áreas de Linux.
 
 - Tema 0: Prólogo del libro.
@@ -23,10 +23,10 @@ El libro de apuntes consta de cinco temas sobre diferentes áreas de Linux.
 - Tema 4: Tema extenso sobre el shell Bash y sus comandos más útiles, así como otras funcionalidades.
 - Tema 5: Extensión del Tema 4 en el que se tratan los scripts de Bash, desde su sintaxis hasta sus usos.
 
-## Ejercicios
+### Ejercicios
 Para más información sobre los ejercicios, lee el documento `ejercicios/README.md`.
 
-## Manual de instalación de Ubuntu
+### Manual de instalación de Ubuntu
 Para facilitar la transición a Linux, este curso propone una instalación Dual Boot de **Ubuntu Desktop** junto con **Windows**. En el documento, se explicará paso a paso cada parte de la instalación, con el fin de no solo completarla, sino entenderla.
 
 ## Ayuda y resolución de dudas
