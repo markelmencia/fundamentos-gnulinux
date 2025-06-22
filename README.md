@@ -1,5 +1,5 @@
-# 0xDeusto: GNU/Linux
-Curso introductorio sobre GNU/Linux para el grupo 0xDeusto.
+# 0xDECODE: GNU/Linux
+Curso introductorio sobre GNU/Linux para el grupo 0xDECODE.
 
 Este curso se centra en los fundamentos del sistema operativo libre **GNU/Linux**, desde su historia brevemente descrita hasta el uso de la terminal de comandos.
 
@@ -30,7 +30,7 @@ Para más información sobre los ejercicios, lee el documento `ejercicios/README
 Para facilitar la transición a Linux, este curso propone una instalación Dual Boot de **Ubuntu Desktop** junto con **Windows**. En el documento, se explicará paso a paso cada parte de la instalación, con el fin de no solo completarla, sino entenderla.
 
 ## Ayuda y resolución de dudas
-Si necesitas asistencia con cualquier duda, no dudes en preguntar en el [servidor de Discord](https://discord.gg/2qPvfCxD9U) de 0xDeusto. Si tienes alguna duda relacionada con la estructura del curso en sí puedes contactarme a mí desde Discord (Nombre de usuario: `slstc`).
+Si necesitas asistencia con cualquier duda, no dudes en preguntar en el [servidor de Discord](https://discord.gg/2qPvfCxD9U) de 0xDECODE. Si tienes alguna duda relacionada con la estructura del curso en sí puedes contactarme a mí desde Discord (Nombre de usuario: `slstc`).
 
 ## Sugerencias y contribuciones
 Siguiendo la filosofía de GNU/Linux, este curso también es **libre y gratuito** (información más detallada en `LICENSE`). Cualquier sugerencia es bienvenida, y si lo deseas, puedes contribuir directamente al curso haciendo un Pull Request o abriendo un Issue en GitHub.
