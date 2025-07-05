@@ -16,12 +16,12 @@ Para facilitar el aprendizaje de GNU/Linux, este curso ofrece:
 ### Libro de apuntes
 El libro de apuntes consta de cinco temas sobre diferentes áreas de Linux.
 
-- Tema 0: Prólogo del libro.
-- Tema 1: Introducción al sistema operativo GNU/Linux: su historia, filosofía y estructura fundamental.
-- Tema 2: Explicación teórica sobre una instalación genérica del sistema operativo, mostrando sus pasos principales.
-- Tema 3: Una introducción a la terminal de comandos, en la que se presentan sus funcionalidades básicas.
-- Tema 4: Tema extenso sobre el shell Bash y sus comandos más útiles, así como otras funcionalidades.
-- Tema 5: Extensión del Tema 4 en el que se tratan los scripts de Bash, desde su sintaxis hasta sus usos.
+- **Tema 0**: Prólogo del libro.
+- **Tema 1**: Introducción al sistema operativo GNU/Linux: su historia, filosofía y estructura fundamental.
+- **Tema 2**: Explicación teórica sobre una instalación genérica del sistema operativo, mostrando sus pasos principales.
+- **Tema 3**: Una introducción a la terminal de comandos, en la que se presentan sus funcionalidades básicas.
+- **Tema 4**: Tema extenso sobre el shell Bash y sus comandos más útiles, así como otras funcionalidades.
+- **Tema 5**: Extensión del Tema 4 en el que se tratan los scripts de Bash, desde su sintaxis hasta sus usos.
 
 ### Ejercicios
 Para más información sobre los ejercicios, lee el documento `ejercicios/README.md`.
