@@ -1,0 +1,129 @@
+\documentclass[a4paper,12pt,oneside]{book}
+\usepackage{graphicx}
+\usepackage[a4paper, left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{tcolorbox}
+\tcbuselibrary{listings, skins}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{tocloft}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    linktoc=all,
+    citecolor=blue
+}
+
+\title{Fundamentos de GNU/Linux}
+\author{Markel Mencía Ramírez}
+\date{Enero 2025}
+
+
+\setlength{\cftsecnumwidth}{3em}  % Increase space for section numbers
+
+\renewcommand{\contentsname}{Índice}
+\renewcommand{\chaptername}{Capítulo}
+\captionsetup[figure]{name=Imagen}
+
+\usepackage{fontspec}
+\setmainfont{RobotoMono-Regular.ttf}[Path=./resources/fonts/, ItalicFont = RobotoMono-Italic.ttf, SlantedFont = RobotoMono-Italic.ttf, BoldFont = RobotoMono-Bold.ttf]
+\setmonofont{RobotoMono-Regular.ttf}[Path=./resources/fonts/, ItalicFont = RobotoMono-Italic.ttf, SlantedFont = RobotoMono-Italic.ttf, BoldFont = RobotoMono-Bold.ttf]
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em} 
+\renewcommand{\baselinestretch}{1.15}
+
+\lstdefinestyle{mystyle}{
+    language=bash,
+    keywordstyle=\color{cyan},
+    commentstyle=\color{gray},
+    stringstyle=\color{orange},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=t,                    
+    keepspaces=true,                 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}% -- Setting up the custom style:
+\lstset{style=mystyle}
+
+\usepackage{tcolorbox}
+\newtcolorbox{tcolorbox-code} {
+    colback=black!70!gray,
+    coltext=white,
+    sharp corners
+}
+
+\newenvironment{command-info}[5]
+{
+  \noindent\begin{minipage}{\linewidth}
+  \noindent\rule{\linewidth}{1pt}\\[0.5em]
+  \noindent{\Large\textbf{#1}}\\[1em]
+  \noindent\textbf{Utilidad: }#2\\
+  \noindent\textbf{Forma de uso general: }#3\\
+  \noindent\textbf{Opciones comunes: }#4\\
+  \noindent\textbf{Ayuda: }#5\\
+  \noindent\rule{\linewidth}{1pt}\\
+  \end{minipage}
+}
+{
+ 
+}
+
+\begin{document}
+
+\newtcblisting{codeblock}[1][]{
+  colback=black!70!gray,
+  coltext=white,
+  enhanced,
+  sharp corners,
+  boxrule=0pt,
+  listing only,
+  listing options={
+    language=bash,
+    basicstyle=\ttfamily\normalsize\color{white},
+    breaklines=true,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    keywordstyle=\color{cyan},
+    commentstyle=\color{gray},
+    stringstyle=\color{orange},
+  },
+  #1
+}
+
+\begin{titlepage}
+    \centering
+    \vspace*{\fill}
+    {\Huge Fundamentos de GNU/Linux\par}
+    \vspace{1.5cm}
+    {\Large Markel Mencía Ramírez\par}
+    \vspace{1cm}
+    {\large Enero 2025\par}
+
+    \vfill
+    \begin{minipage}{\textwidth}
+        \centering
+        \raisebox{-0.15\height}{\includegraphics[height=1em]{resources/images/cc_heart.black.png}}
+        {\small 2025. Openly licensed via \href{https://creativecommons.org/licenses/by-sa/4.0/}{CC BY-SA}.\par}
+        {\small \href{https://github.com/markelmencia/fundamentos-gnulinux}{Repositorio del libro}\par}
+    \end{minipage}
+    
+\end{titlepage}
+
+\tableofcontents
+
+\include{chapter-1}
+\include{chapter-2}
+\include{chapter-3}
+\include{chapter-4}
+\include{chapter-5}
+\include{chapter-6}
+
+\end{document}

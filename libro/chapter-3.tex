@@ -1,0 +1,156 @@
+\chapter{Instalación de Linux}
+\section{Preámbulo}
+En estas transparencias se va a mostrar un proceso de  instalación genérico.
+
+Este proceso puede variar en función de la distribución, pero todas las instalaciones requieren configurar muchos de los pasos que vamos a ver.
+
+Normalmente las distribuciones ofrecen un sistema de instalación automático/guiado, pero conocer cómo funcionan las instalaciones por debajo de la interfaz puede ayudarte a comprender mejor el funcionamiento de un sistema operativo.
+
+Es importante recalcar que no comprender todo a la primera es normal. Cuanto más instalaciones hagas, tanto guiadas como manuales, más aprenderás.
+
+\begin{enumerate}
+    \item Selección de distribución
+    \item Preparación del medio de instalación
+    \item Configurar el arranque
+    \item Seleccionar tu distribución de tecla, idioma y zona horaria
+    \item Crear, formatear y montar particiones de disco
+    \item Configurar internet
+    \item Instalar los paquetes base de Linux
+    \item Instalar entorno de escritorio
+    \item Crear usuario
+    \item Instalar bootloader
+\end{enumerate}
+
+\section{Selección de distribución}
+Para seleccionar una distribución, hay algunos factores que debes tener en cuenta:
+\begin{itemize}
+    \item \textbf{Tu conocimiento sobre Linux}: algunas distribuciones son más complicadas de manejar que otras. Conviene empezar con distribuciones sencillas antes de saltar a unas más complejas.
+    \item \textbf{Tus necesidades de software}: Dependiendo de tus necesidades, algunas distribuciones pueden ser más favorables que otras. Por ejemplo, se suele escoger Debian para programar servidores, ya que es una distribución muy estable.
+    \item \textbf{El nivel de personalización que necesitas}: Algunas distribuciones te dan más control sobre tu sistema, esto puede ser un factor a tener en cuenta en tu elección.
+    \item \textbf{La actividad en el desarrollo de la distribución}: Es recomendable elegir una distribución que esté constantemente en desarrollo por un equipo grande de desarrolladores/as. En caso contrario, tu distribución podría ser más vulnerable a ataques.
+\end{itemize}
+
+Si no sabes qué distribución elegir, consulta las más populares. Distribuciones como Ubuntu, Linux Mint o Manjaro son distribuciones muy aptas para gente que está empezando.
+
+\section{Preparación del medio de instalación}
+Para instalar un sistema operativo, necesitamos un conjunto de programas que hacen la función de instalador. Estos programas se introducen en un dispositivo de almacenamiento externo para poder ejecutarse en un sistema que no tiene por qué tener "nada".
+
+Para este paso tienes que consultar la página web de la distribución que deseas instalar, y descargar una imagen ISO de instalación.
+
+Un paso opcional pero recomendable es verificar la firma de la imagen ISO. Esto se hace para comprobar que la imagen es legítima y no ha sido infectada con código malicioso. Este paso varía en función de la distro.
+
+Prepara un dispositivo de almacenamiento externo como un flash-drive o un disco óptico. Asegúrate de guardar en otro lugar los datos del dispositivo ya que éste será formateado.
+
+Descarga una utilidad de booteo. Son programas que nos ayudan a convertir nuestro dispositivo de almacenamiento externo en unidades "booteables", es decir, que se pueden ejecutar en el arranque del sistema, como los bootloaders. A este proceso se le llama "flashear".
+
+Una de las utilidades de booteo más utilizadas es Rufus. Es portable, fácil de usar y cumple con su funcionalidad.
+
+\section{Configurar el arranque}
+Una vez tenemos nuestro medio de instalación preparado, es hora de configurar el arranque de nuestro sistema para hacer que el programa de instalación se ejecute al encender el equipo.
+
+Para esto tenemos que acceder a la BIOS/UEFI, un programa en almacenamiento de solo lectura (ROM) en nuestra placa madre. Entre otras cosas, la BIOS/UEFI tiene un rol muy importante en el arranque, ya que éste se configura ahí.
+
+En función de la marca de tu ordenador, tu BIOS o UEFI puede ser diferente a otras, pero todas deberían tener opciones de arranque. Consulta en internet como acceder a la BIOS/UEFI y modificar el arranque de tu sistema con tu marca de ordenador.
+
+\section{Seleccionar tu distribución de teclado, idioma y zona horaria}
+A partir de este paso comienza la instalación de Linux.
+
+Al haber modificado el arranque para que el equipo se ejecute en tu dispositivo, al reiniciar el sistema accederemos a la instalación.
+
+Normalmente lo primero que se suele configurar es tu distribución o layout del teclado, para poder usar el teclado sin ningún problema durante la instalación.
+
+Una vez configurado el teclado se suele configurar también el locale, un conjunto de datos sobre tu localización como idioma, zona horaria...
+
+\section{Crear, formatear y montar particiones de disco}
+Por temas de seguridad y organización, el almacenamiento de nuestro disco duro se divide en áreas para diferentes usos. A estas áreas se les llama particiones.
+
+En Linux se suelen configurar estas particiones principales:
+
+\begin{itemize}
+    \item \textbf{Partición / (root)}: Aquí se instala el SO de Linux.
+    \item \textbf{Partición /home (opcional pero recomendada)}: Aquí se almacenan tus archivos de usuario (documentos, vídeos...)
+    \item \textbf{Partición swap}: Esta partición se usa como "RAM de reserva", cuando agotamos nuestra RAM normal.
+    \item \textbf{Partición /boot (opcional pero recomendada)}: Partición pequeña con los programas de arranque.
+\end{itemize}
+
+¿Qué es sistema de archivos?: Un sistema de archivos (o filesystem) es un formato que utiliza un sistema operativo para guardar datos. Windows usa NTFS. Linux usa ext4.
+
+Cuando creamos una partición, tenemos que definir su tipo de filesystem o sistema de archivos. Esto es de vital importancia porque si seleccionamos un filesystem equivocado, es posible que Linux no reconozca la partición.
+
+Cada partición mencionada tiene unas características, vamos a verlas una a una:
+
+\begin{itemize}
+    \item /boot: Almacena los ficheros y programas de arranque, como el bootloader. Es una partición opcional, pero por temas de compatibilidad con la BIOS y por temas de cifrado en otras particiones, se suele separar de otras particiones.
+    \begin{itemize}
+        \item \textbf{Tamaño recomendado}: No más de 1GB
+        \item \textbf{Filesystem}: Depende del bootloader, pero normalmente por temas de compatibilidad se formatea con FAT32 (que es obligatorio si quieres hacer dual boot  con Windows)
+    \end{itemize}
+
+    \item \textbf{swap}: La partición swap es un área del disco duro que reservamos para usarla como "RAM de emergencia". Si por la razón que sea se nos agota nuestra RAM, nuestro disco duro hará de respaldo, a pesar de que el acceso a disco sea mucho más lento. A esta memoria de emergencia se le llama memoria virtual.
+    \begin{itemize}
+        \item \textbf{Tamaño recomendado}: Depende de tu RAM, y del criterio que desees seguir. Por ejemplo, un criterio que se ha usado mucho tiempo es asignar el doble de gigas de RAM que tengas a la partición swap, pero no siempre hace falta tanto.
+        \item \textbf{Filesystem}: "Ninguno", se formatea de una forma especial.
+    \end{itemize}
+
+    \item \textbf{/}: Al llamarse / (root), contiene todos los archivos que parten de /, es decir, todos los archivos de nuestro sistema operativo, excepto los de /boot porque creamos una partición diferente para ese directorio.
+
+    \begin{itemize}
+        \item \textbf{Tamaño recomendado}: Depende de si vas a crear una partición para /home o no. Si vas a crear una partición para /home, 20-50GB deberían de ser suficientes, pero esto depende de cuántos paquetes vas a instalar en el sistema. Si no vas a crear una partición para /home (ni otras particiones a parte de las mencionadas), asígnale el espacio restante que te queda en disco.
+        \item \textbf{Filesystem}: ext4
+    \end{itemize}
+
+    \item \textbf{/home}: Contiene tus ficheros personales de tu(s) usuario(s). Es recomendable crear esta partición si te interesa que tus datos sean portables. Si deseas cambiar de distribución, para hacerlo bastaría con eliminar todas las particiones menos la de /home. Así, el sistema operativo se restablecerá para poder instalar otra distribución pero tus ficheros personales permanecerán intactos.
+
+    \begin{itemize}
+        \item \textbf{Tamaño recomendado}: Generalmente hablando, a esta partición se le suele asignar el espacio restante que le queda a tu disco una vez has creado el resto de particiones.
+        \item \textbf{Filesystem}: ext4
+    \end{itemize}
+\end{itemize}
+
+\section{Configurar internet}
+Necesitamos una conexión a internet para descargar paquetes.
+
+Si tienes Ethernet, no tendrás que configurar nada, pero algunas instalaciones requieren configurar interfaces de red para poder establecer conexiones Wi-Fi.
+
+Si tienes acceso a consola, una forma muy sencilla de comprobar que tienes conexión a internet es mediante el comando ping, que manda paquetes "de prueba" a un dominio para comprobar la conexión. Por ejemplo:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ ping google.com
+\end{lstlisting}
+\end{tcolorbox-code}
+
+\section{Instalar los paquetes base de Linux}
+Los paquetes base de Linux son un conjunto de programas y utilidades esenciales para el funcionamiento del sistema operativo.
+
+Para instalarlos, necesitamos saber cuál es el gestor de paquetes de nuestra distribución. Un gestor de paquetes (o packet manager) es el programa que usamos para instalar paquetes en nuestro sistema. Estos paquetes puede ser desde entornos de escritorio enteros como GNOME hasta programas como VS Code.
+
+Cada distro suele tener un packet manager por defecto. En Debian es apt, en distribuciones de Red Hat (como Fedora) es RPM/DNF, en Arch Linux es Pacman.
+
+Cada Packet Manager tiene sus propios paquetes base, con diferentes nombres y características. Eso sí, normalmente todos los Packet Managers ofrecen en sus paquetes base las herramientas más fundamentales de GNU/Linux, como coreutils, bash, systemd, glibc...
+
+Al descargar los paquetes, el mismo Packet Manager se encarga de instalarlos. Además, es importante mencionar que las actualizaciones del sistema también se hacen mediante el Packet Manager. Por tanto, es importante aprender a manejar cómodamente el Packet Manager de tu distribución, ya que es una parte muy importante de éste.
+
+\section{Instalar entorno de escritorio}
+Esta parte es opcional pero muy recomendable, sobre todo para las personas que están empezando. Además, hasta los usuarios/as más acérrimos a usar la terminal lo máximo posible tienen un entorno de escritorio, ya que además de ofrecer interfaces, nos facilitan otras funcionalidades de utilidad.
+
+Los entornos de escritorio también se instalan mediante el Packet Manager, y si se hace de forma manual, es posible que requieran configuraciones que no hace el Packet Manager. Sin embargo, la mayoría de distribuciones instalan un entorno de escritorio automáticamente (como muchos de los pasos anteriores).
+
+\section{Crear usuario}
+Para leer/escribir/ejecutar archivos, iniciar procesos, gestionar permisos y tener un directorio de trabajo, es necesario tener un usuario.
+
+Linux por defecto viene con un usuario configurado, "root". Este usuario tiene permisos absolutos en el sistema. Sin embargo, por cuestiones de seguridad es recomendable crear un usuario normal por separado que no tenga permisos root. Si queremos hacer una acción que requiera permisos de root, existe el comando "sudo" que, tras introducir la contraseña del usuario root, nos otorga permisos de root en nuestro usuario no-root.
+
+Volviendo a la instalación, antes de crear un usuario nuevo tenemos que otorgarle una contraseña al usuario root (la que tendremos que introducir al usar sudo). Si nuestro instalador no nos ofrece una interfaz para hacerlo, tenemos que usar el comando passwd, y seguir sus instrucciones.
+
+A continuación, tenemos que crear un usuario nuevo. Por norma general esto se hace con el comando useradd, usando luego passwd para establecer una contraseña.
+De nuevo, normalmente las instalaciones son guiadas y nos facilitan todo este proceso.
+
+\section{Instalar bootloader}
+La instalación está terminada, solo falta instalar un bootloader para que la BIOS/UEFI reconozca el sistema operativo y lo pueda ejecutar en el arranque.
+
+Uno de los bootloaders más usados es GRUB (GRand Unified Bootloader), y es el que eligen por defecto muchas distribuciones como Ubuntu.
+
+Si el instalador no instala GRUB (u otro bootloader) automáticamente, es posible que configuración adicional sea necesaria para configurar correctamente el arranque.
+
+Una vez instalado el bootloader, ya podemos reiniciar el sistema, extraer el medio de instalación, reconfigurar el arranque en la BIOS/UEFI (si es necesario), y reiniciar el sistema.

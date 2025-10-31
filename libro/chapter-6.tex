@@ -1,0 +1,757 @@
+\chapter{Bash Scripting}
+El uso de bash mediante una terminal ya de por sí es muy útil. Nos permite realizar una infinidad de tareas, que son suficientes para tener un buen control sobre nuestra máquina. De todas formas, se puede dar un paso más hacia delante, y para ello tenemos el bash scripting
+
+\section{¿Qué es Bash Scripting?}
+A grosso modo, el bash scripting es convertir el uso de bash en la terminal en un lenguaje de programación. No hace falta mencionar mucho más para que podamos ver las puertas que nos abre hacer bash scripting. Automatización, depuración más sencilla, portabilidad, legibilidad, mayor control...
+
+El bash scripting le proporciona variables, bucles, condicionales y funciones a un shell que ya de por sí nos ofrece muchísimas utilidades. Es la herramienta perfecta para manejar un ordenador con Linux instalado. Nos ofrece una mezcla de la flexibilidad de un lenguaje de programación de alto nivel como Python o Java y las utilidades y recursos de control que nos ofrece el shell de bash. 
+
+Además de esto, un programa escrito en bash no requiere compiladores. Como su propio nombre indica, son scripts, es decir, ficheros de texto legibles con sintaxis de código en ellos. Para ejecutarlos, basta con tener un sistema con el shell de bash instalado, para poder interpretar el fichero y ejecutarlo, línea a línea. Esto no solo hace un programa en bash muy ligero, sino también altamente portable. Prácticamente cualquier máquina con Linux es capaz de ejecutarlo (asumiendo que tiene todos los recursos que usa el programa instalados, esto es, los comandos).
+
+En resumen, bash va a abrirnos muchísimas puertas y nos va a ayudar a entender este sistema operativo en una forma más procedimental. Dicho esto, vamos a empezar desde el principio.
+
+\section{Hello world}
+Cualquier clase, curso o tutorial de cualquier lenguaje comienza explicando cómo imprimir en pantalla un "hello world". Este curso no es una excepción. De hecho, habiendo visto ya varios comandos de bash, es posible y probable que ya sepamos cómo hacer esto, por lo menos parcialmente.
+
+Para empezar, vamos a crear un fichero, nuestro script:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ touch hello_world.sh
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Nada nuevo hasta aquí. Veamos ahora una forma de hacer un hello world:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+echo "hello world"
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Antes de explicar nada, vamos a ver qué pasa al ejecutar el script:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ ./hello_world.sh
+bash: ./hello_world.sh: Permission denied
+$ ls -l hello_world.sh
+-rw-rw-r-- 1 oxdecode oxdecode 32 ene 20 3:17 hello_world.sh
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Resulta que, al crear un fichero, ningún grupo de usuarios tiene permisos de ejecución por defecto, por lo que tenemos que añadirlos manualmente con chmod. Podemos hacerlo de forma octal:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ chmod 755 hello_world.sh
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Esto es algo que vamos a tener que hacer cada vez que creemos un script que queremos ejecutar.
+
+Ahora, al ejecutar, se imprime la salida esperada:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ ./hello_world.sh
+hello world
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Volvamos al código:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+echo "hello world"
+\end{lstlisting}
+\end{tcolorbox-code}
+
+La segunda línea la entendemos todos, de hecho es posible que hayas conseguido intuir que esta era la forma de hacer un hello world. Pero, ¿y la primera?
+
+A esta línea se le llama shebang. Más concretamente, a "\#!". Esta línea, que parece un comentario, se coloca siempre en la primera línea del script, para que si ejecutamos el script desde terminal, la terminal sepa qué intérprete tiene que utilizar para ejecutar el programa. Como se mencionó anteriormente en el curso, bash no deja de ser un programa binario ejecutable, y como estamos programando en bash, necesitamos decirle a la terminal que coja el script y se lo pase a el programa bash, que como los demás programas ejecutables, se encuentra en el directorio /bin, de binaries. Por dar otro ejemplo, si nuestro programa fuera un script de Python, el shebang sería:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/python
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Resumidamente, el shebang es la primera línea obligatoria de un script que determina con qué intérprete se tiene que ejecutar el script.
+
+Así entonces es como se haría un hello world. A partir de aquí, podemos incluir otros comandos sin problema:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+    
+echo "hello world"
+printf "hola mundo\n" # otra forma de hello world
+echo hola | rev
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Y al ejecutar...
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ ./hello_world.sh
+hello world
+hola mundo
+aloh
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Se ejecuta todo a la vez, como si hubiéramos introducido los comandos manualmente en la terminal. Nótese que los comentarios se introducen con un "\#".
+
+A partir de aquí, nos toca aprender todo lo demás del lenguaje. Empecemos por las variables.
+
+\section{Variables}
+
+Como ya sabemos, las variables en un lenguaje de programación son contenedores de datos. Nos permiten almacenar información que podríamos usar en diferentes áreas de un programa. bash tiene una forma ligeramente diferente de usar las variables, además de un tipo de variable diferente que no es definido por el usuario. Vamos a empezar por el sí definido por el usuario:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+una_variable="hello world"
+
+echo $una_variable
+\end{lstlisting}
+\end{tcolorbox-code}
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ ./variables.sh
+hello world
+\end{lstlisting}
+\end{tcolorbox-code}
+
+bash es muy estricto con los espacios, y si colocamos espacios entre las definiciones de variables nos saltará error, así que ten cuidado con eso.
+
+Para usar la variable, vemos también que colocamos un \$. Con este símbolo, le estamos diciendo al shell que queremos imprimir el valor de la variable, en este caso el string "hello world".
+
+Como podemos ver, en ningún momento definimos el tipo de la variable, como lo haríamos en C o en Java. Esto se debe a que, en principio, en bash todas las variables se tratan como strings, cadenas de caracteres. No obstante, esto no implica que solo podamos definir strings en variables:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+anyo=2025
+directorio=$(pwd)
+echo Estamos en el año $anyo y el directorio actual es $directorio
+\end{lstlisting}
+\end{tcolorbox-code}
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ ./variables.sh
+    Estamos en el año 2025 y el directorio actual es /home/oxdecode
+\end{lstlisting}
+\end{tcolorbox-code}
+
+bash es un lenguaje de programación muy flexible, y nos permite almacenar salidas de comandos en variables mediante el conjunto de símbolos \$(<comando>).
+
+Estas son las variables que el usuario puede definir directamente, vamos ahora con las que no define directamente.
+
+Los comandos de bash tienen argumentos. Uno o una podría pensar que podemos replicar esta funcionalidad mediante scripts. Efectivamente, podemos:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+echo El primer y segundo argumento que he recibido es $1 y $2 
+\end{lstlisting}
+\end{tcolorbox-code}
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ ./variables.sh hola 3
+El primer y segundo argumento que he recibido es hola y 3
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Acompañando el símbolo \$ con un número del 1 al 10 podemos acceder a los datos recibidos como parámetros en orden. Existen formas de utilizar más de 10 argumentos pero para este curso diez serán más que suficientes.
+
+Existen otros tipos de variables no definidas por el usuario, las variables de entorno. Estas variables, que las define (por norma general) el mismo sistema operativo, son variables accesibles por los procesos de nuestro sistema. Nos proporcionan información adicional sobre nuestra sesión o el mismo sistema operativo, como por ejemplo el shell que estamos usando, el nombre del usuario en la sesión e incluso el directorio en el que nos encontramos.
+
+Estas variables tienen nombres fijos, y las podemos consultar mediante el comando printenv:
+
+\begin{command-info}
+{printenv}
+{Imprime en pantalla todas las variables de entorno.}
+{printenv}
+{Ninguna}
+{man printenv o printenv --help}
+\end{command-info}
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ printenv
+SHELL=/bin/bash
+XDG\_SEAT=seat0
+PWD=/home/oxdecode
+...
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Verás una cantidad considerable de variables, algunas más comprensibles que otras. El caso es que, podemos acceder a estas variables desde un script de bash:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+directorio_actual=$PWD # Dirección actual
+sh=$SHELL # Dirección del binario ejecutable del shell actual
+lenguaje=$LANG # Lenguaje actual
+numero_aleatorio=$RANDOM # Genera un número aleatorio
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Estos son algunos ejemplos de variables de entorno. Son bastante más situacionales que cualquier otro tipo de variable, pero pueden servirnos en algún momento en concreto.
+
+\section{Operaciones}
+
+Cualquier lenguaje de programación nos debe permitir realizar operaciones matemáticas. bash no es una excepción:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+suma=\((9+10))
+resto=$((5%2))
+
+echo "9 + 10:" $suma
+echo "2 * 3:" $((2*3))
+echo "5 / 2:" $((5/2))
+echo "Resto de 5 / 2:" $resto
+\end{lstlisting}
+\end{tcolorbox-code}
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ ./operaciones.sh
+9 + 10: 19
+2 * 3: 6
+5 / 2: 2
+Resto de 5 / 2: 1
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Vemos que una vez más nos encontramos con el \$(), en este caso con un par de paréntesis más. Por normal general, el símbolo \$ en scripts de bash significa: "el valor de".
+
+Como en otros lenguajes de programación, también existen operaciones a nivel de bit. Además, éstas tienen una funcionalidad adicional que otros lenguajes no tienen.
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+or=$(2|4))
+and=$((7&3))
+shift\_left=$((2<<1))
+
+echo "2 or 4:" $or
+echo "7 and 3:" $and
+echo "2 desplazado a la izquierda:" $shift_left
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Hasta aquí, nada nuevo. La mayoría de lenguajes ofrecen realizar operaciones a nivel de bit, y bash no es una excepción. Veamos ahora la funcionalidad adicional:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+mkdir directorio_nuevo && echo "Dos comandos en una línea"
+mkdir directorio_nuevo || echo "mkdir ha fallado"
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Si colocamos dos operadores and entre dos comandos, ambos comandos se ejecutarán. Si ambos son correctos, el script continuará con normalidad. Si no, el script terminará con un error.
+
+En la tercera línea, el segundo comando se ejecutará sólo si el primero falla. Como el directorio directorio\_nuevo ya está creado, en este caso sí fallaría y se ejecutaría el segundo comando.
+
+\section{Entrada de usuario}
+
+Si queremos crear programas más interactivos, además de usar parámetros, podemos pedirle datos de entrada al usuario. Al hacerlo, el shell interrumpirá el flujo del programa hasta que le proporcionemos una entrada. Esto se puede hacer mediante el comando read.
+
+\begin{command-info}
+{read}
+{Asigna una entradaa del usuario a una variable.}
+{read <variable>}
+{Ninguna}
+{read --help}
+\end{command-info}
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+echo ¿Cuál es tu nombre?
+read nombre
+
+echo Hola, $nombre
+\end{lstlisting}
+\end{tcolorbox-code}
+
+En este ejemplo estamos preguntándole al usuario su nombre. Mediante el comando read, esperamos a que responda, y esa entrada se asigna a la variable nombre, creada en el mismo comando. Para terminar, imprimimos el resultado con echo.
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ ./entradas_usuario.sh
+¿Cuál es tu nombre?
+Franz
+Hola, Franz
+\end{lstlisting}
+\end{tcolorbox-code}
+
+La tercera línea estaría vacía al ejecutar el script, y en ella podrías escribir. Al pulsar enter, se cierra la entrada y el programa continúa tras asignar a la variable de read el valor de entrada. En este caso "Franz"
+
+\section{Arrays}
+Los arrays son conjuntos de datos que se almacenan en posiciones definidas por índices. Un número considerable de lenguajes de programación requieren que todos los datos incluidos en un array sean del mismo tipo (enteros, strings, booleanos...). Como en bash todos los datos son strings, no hay problemas en cuanto a añadir elementos, ya sean números o no. Otra cosa es lo que hagamos con cada dato del array.
+
+La creación de un array es bastante sencilla:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+numeros=(1 2 3 4 5)
+notas=(do re mi fa sol la si)
+
+echo ${numeros[2]}
+echo ${notas[0]} ${notas[2]} ${notas[4]}
+\end{lstlisting}
+\end{tcolorbox-code}
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ ./arrays.sh
+3
+do mi sol
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Basta con colocar los valores iniciales separados por espacios para inicializar un array. Fíjate cómo en el array de notas no incluyo comillas. Como en bash todo son strings, no hace falta colocarlas (aunque no sería erróneo, de hecho sería más visual).
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+numeros[0]=0 # Sustituye el valor del primer elemento a un 0
+numeros[2]=7 # Añade en el tercer elemento un 7
+numeros+=(6) # Añade al final del array un 6
+
+echo {notas[@]} # Una forma de imprimir todos los elementos
+\end{lstlisting}
+\end{tcolorbox-code}
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ ./arrays.sh
+0 2 7 4 5 6
+\end{lstlisting}
+\end{tcolorbox-code}
+
+De esta manera podemos sustituir elementos de un array mediante su índice o añadir elementos al final de un array. 
+
+Es importante mencionar que bash no viene con funciones "pre-programadas" ni librerías. Un lenguaje de programación interpretado como Python sí contiene funciones como .append(), len() o incluso print(). Bash, que también es un lenguaje interpretado, no contiene este tipo de funciones, haciendo que dicho lenguaje sea más ligero, con el sacrificio de tener que depender más de los comandos de Linux y de nuestros propios conocimientos de programación. Se podría decir que, debido a esto, bash es un lenguaje de menor nivel que Python.
+
+\section{Condicionales}
+Habiendo visto las operaciones (sobre todo las booleanas) podemos pasar a ver las condiciones de bash, que como en cualquier otro lenguaje de programación, nos permite ejecutar operaciones o comandos sólo si se cumplen ciertas condiciones en el programa.
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+x=$1
+
+if [ $x -eq 2 ]; then
+    echo x es igual a 2
+elif [ $x -lt 2 ]; then
+    echo x es menor que 2
+else
+    echo x es mayor que 2
+fi
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Esta es una estructura general sobre los condicionales de bash. Puede pensarse que la sintaxis de este lenguaje de programación quizá sea algo antiintuitiva. Este es un punto de vista válido, francamente. De todas formas, no deja de ser una sintaxis comprensible y con sentido. 
+
+Toda condicional empieza con un "if" y termina con un "fi". Si se quiere incluir otra condicional se incluye un elif (else if), y para terminar, un else, que cómo no, no es obligatorio. Las condiciones de las condicionales van entre corchetes, rodeando la expresión booleana con espacios, como se ve en el ejemplo.
+
+En esta condicional, el programa primero comprueba si el valor de x (que es el valor que recibimos como primer parámetro) es igual a 2. (Debido a que se usa la opción -eq (equal)). Si esta primera condición no se cumple, se comprueba si x es explícitamente menor que 2 (-lt = less than). Si x no es ni igual ni menor que 2, sabemos que x tiene que ser mayor, que es lo que representaría el else en esta condicional.
+
+Veamos otro ejemplo:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+x=$1
+y=$2
+
+if ! [ $x -lt 0 ] && [ $y -lt $x ]; then
+	echo x es positivo e y es menor que x
+else
+	echo No se ha cumplido el caso
+fi
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Vemos que pueden haber más de una condición en un if. Aquí, la primera parte de la condición comprueba si el valor de x es menor que 0 y lo niega. Es decir, que si x es menor que 0 la condición será falsa y si x es mayor que 0 la condición será cierta. La segunda parte de la condición comprueba si el valor de y es menor que el de x. Como hay un and de pormedio, ambas condiciones tienen que ser ciertas para que el caso se cumpla. De no ser así, se ejecutará el else.
+
+Para hacer comprobaciones con variables que no son numéricas, tenemos que utilizar unos tokens diferentes. -eq, -gt, -lt, etc. pasan a ser ==, >, <... Se convierten en los tokens de condicionales a los que estamos acostumbrados.
+
+
+Esto es lo básico sobre condicionales. Cabe mencionar que existen otros tipos de condiciones, que nos ayudan a programar comandos que se ejecuten en función de si un fichero existe, de los permisos que tiene, y mucho más. Sin embargo, por no densar mucho este apartado, vamos a pasar a los bucles.
+
+\section{Bucles}
+Los bucles nos permiten ejecutar ciertas operaciones y/o comandos repetidas veces. Hay diferentes tipos de bucles con diferentes formatos de condicionales. Vamos a ver los dos bucles más importantes: for y while. Existe un tercero, el until, quizá algo redundante sabiendo utilizar el while, por lo que no lo consultaremos en este curso.
+
+Vamos con el for. For es ideal para iterar sobre algo, es decir, recorrer los elementos de un array, o realizar operaciones que requieran saber el número de iteración por el que vamos, como contadores. Vamos a ver ambos ejemplos, empezando por un contador:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+for ((i=0; i<=10; i++)); do
+	echo $i
+done
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Este es el for "clásico", por decirlo de alguna manera. La condicional tiene exactamente la misma estructura que el for de C o Java. 
+
+En el condicional, para empezar definimos el iterador y su valor, en este caso i a 0. La siguiente parte establece la condición de bucle, la que determina si el bucle sigue o no. En este caso, el bucle se ejecutará si i es menor o igual a 10. Para terminar, definimos cómo itera el bucle. Al poner i++, estamos diciendo al bucle que queremos que i incremente uno a uno. Poner i=i+1 daría el mismo resultado.
+
+Al terminar el condicional se coloca un ; y después el token do.
+A partir de ahí, de forma indentada, se escriben las operaciones que quieres que se ejecuten en bucle, y para terminar, al final del bucle, sin indentar, se coloca el token done.
+
+Al ejecutar este programa vemos que obtenemos una especie de "contador":
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ ./bucles.sh
+0
+1
+...
+9
+10
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Ahora vamos a ver un bucle algo más útil. Como hemos mencionado, los bucles son ideales para trabajar con arrays, así que vamos a ver un ejemplo un poco más complejo:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+numeros=(11 12 13 14 15 16 17 18 19 20)
+
+for numero in ${numeros[@]}; do # Itera por toda la lista
+    if [ $(($numero%2)) -eq 0 ]; then # Si el número es par...
+		echo $numero # Se imprime el número
+    fi
+done 
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Como podemos ver, en este programa primero definimos un array de números, del 11 al 20. En el for, vemos que el condicional tiene una estructura diferente a la clásica. Primero se define el iterador, numero. numero va a iterar por todo el array, adoptando el valor de cada elemento. En la primera iteración, el valor de numero será 11, luego 12...
+
+Dentro del bucle tenemos un condicional. En él, primero se calcula el resto de dividir el valor de num entre 2. Luego, mediante -eq, se comprueba que el resto es igual a 0. Si es así, se ejecuta el echo. Esencialmente, lo que estamos comprobando en esta condicional es si el elemento del array que toca en la iteración es par.
+
+Al ejecutarlo vemos que el objetivo de este bucle se cumple:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ ./bucles.sh
+12
+14
+16
+18
+20
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Un ejemplo con arrays y bucles clásicos podría ser este:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+numeros=()
+
+for ((i=0; i<10; i++)); do
+	numeros+=($i) # Añade el valor del iterador a numeros
+done
+
+echo ${numeros[@]} # Imprime todos los elementos de numeros
+\end{lstlisting}
+\end{tcolorbox-code}
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ ./bucles.sh
+0 1 2 3 4 5 6 7 8 9
+\end{lstlisting}
+\end{tcolorbox-code}
+
+En el que como se ve, a partir de un array vacío, se añaden los números del 0 al 9.
+
+Vamos ahora con el while. A diferencia del for, un while no tiene porqué tener una variable iterativa. Simplemente, mientras que se cumpla su condición, el bucle se repetirá.
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+array=()
+while [ ${#array[@]} -le 3 ]; do
+	array+=("Elemento")
+done
+echo ${array[@]}
+\end{lstlisting}
+\end{tcolorbox-code}
+
+En este ejemplo, se añadirá el string "Elemento" a array hasta que el número de elementos de array sea 4, porque en la condición usamos -le (less or equal). Por tanto, el array llega a 3, se vuelve a ejecutar, la condición deja de cumplirse y la cantidad de elementos de array se queda en 4. Fíjate cómo en la condición usamos \${\#array[@]} (con el \#) para decirle al while que queremos comprobar el número de elementos del array.
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ ./bucles.sh
+Elemento Elemento Elemento Elemento
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Para terminar con los bucles, existen dos operaciones exclusivas para éstos. break y continue. No todos los programadores y programadoras recomiendan su uso (sobre todo el del continue), ya que en teoría siempre hay alguna forma de remodelar el bucle para no tener que recurrir al uso de estas operaciones. De todas formas vamos a ver brevemente cuál es su uso.
+
+break indica que el bucle tiene que parar. Si un bucle está ejecutándose y llega a un break, éste terminará, independientemente de cual sea su condición de parada.
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+    #!/bin/bash
+
+for ((i=0; i<10; i++)); do
+    if [ $i -eq 5 ]; then
+		break
+    fi
+    echo $i
+done
+\end{lstlisting}
+\end{tcolorbox-code}
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ ./bucles.sh
+0
+1
+2
+3
+4
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Este bucle, viendo solo su condicional, en teoría itera hasta que i = 10. Sin embargo, dentro de él, tenemos una condicional que nos dice que si i = 5, el bucle se para. Por tanto, este bucle solo itera hasta que i = 5, gracias al break.
+
+continue, si bien su nombre es un poco raro considerando su función, se salta iteraciones:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+for ((i=0; i<4; i++)); do
+	if [ $i -eq 2 ]; then
+		continue
+	fi
+    echo $i
+done
+\end{lstlisting}
+\end{tcolorbox-code}
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ ./bucles.sh
+0
+1
+3
+\end{lstlisting}
+\end{tcolorbox-code}
+
+\section{Funciones}
+Las funciones de bash son algo diferentes a las funciones convencionales de otros lenguajes. Sin embargo, son muy intuitivas.
+
+Las funciones, en el lenguaje de programación convencional, son unos conjuntos de código que pueden ser llamados (ejecutados) en diferentes partes de un programa. Las funciones de bash también siguen esta definición, pero quizá podrían ser definidas mejor como comandos en miniatura.
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+suma(){
+	echo $1 + $2 = $(expr $1 + $2)
+}
+
+suma 9 10
+\end{lstlisting}
+\end{tcolorbox-code}
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+    \$ ./funciones.sh
+9 + 10 = 19
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Fíjate cómo parece que hemos creado un comando llamado suma, que recibe dos parámetros (los dos operandos), calcula la suma de estos con expr e imprime el resultado de una forma más legible con echo. Esto es una función; como puedes ver, tiene una estructura sintáctica bastante sencilla.
+
+Algo que podría resaltar de esta función es cómo en la definición no especificamos ningún parámetro. En un lenguaje como C, esta función se escribiría así:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#include <stdio.h>
+
+void suma(int a, int b) { // Especificamos los parámetros
+	printf("%d + %d = %d", a, b, a + b);
+}
+\end{lstlisting}
+\end{tcolorbox-code}
+
+En bash, no se especifican los parámetros, es decir, son dinámicos. En las funciones que creemos, podemos introducir los parámetros que queramos, otra cosa es que se vayan a usar. En nuestra función suma, esta llamada:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+suma 9 10
+\end{lstlisting}
+\end{tcolorbox-code}
+
+equivale a esta otra:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+suma 9 10 98934 12 98708 43 3
+\end{lstlisting}
+\end{tcolorbox-code}
+
+porque los únicos parámetros a los que les damos uso son el primero y el segundo.
+
+La función suma, hecha como está, no devuelve nada, es de tipo void, es decir, ejecuta su código (en este caso, imprime algo) pero no da un "resultado". Para funciones aritméticas, lo normal es que devuelva el resultado y que se trate más tarde la salida, de esta manera:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+suma(){
+	return $(expr $1 + $2)
+}
+
+a=9
+b=10
+
+suma $a $b
+resultado=$? # Se guarda el resultado de la función suma
+echo $a + $b = $?
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Esta sería una forma más "correcta" de programar una función que calcule la suma de dos operandos, ya que nos da más flexibilidad. Sin embargo, salta bastante a la vista la forma en la que se almacena el resultado de la suma. \$? representa la salida del último proceso ejecutado por el sistema. Al ponerlo justo después de la llamada a suma, ese último proceso será precisamente la ejecución de la función suma. Por tanto, en la variable resultado se almacenará la suma de a + b, para luego poder imprimirla sin problema. Es importante mencionar que en bash solo se pueden devolver valores numéricos.
+
+Para terminar, cabe destacar dos utilidades muy prácticas para conocer mejor la forma en la que se ha realizado una llamada. Mediante \$\# podemos obtener el número de argumentos en la llamada, y podemos obtenerlos en forma de array con \$@. Veamos un ejemplo práctico:
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+media(){
+	argumentos=$@
+	suma=0
+	echo Se han recibido $# argumentos: $argumentos
+
+	for numero in ${argumentos[@]; do # Calcula la suma de args.
+		suma=$(($suma + $numero))
+	done
+
+	return $(($suma / $#)) # Calcula la media
+}
+
+media 1 3 7 9
+echo La media es $?
+\end{lstlisting}
+\end{tcolorbox-code}
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ ./funciones.sh
+Se han recibido 4 argumentos: 1 3 7 9
+La media es 5
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Y esto será suficiente para saber programar funciones en bash. Como hemos visto, si bien son algo diferentes a los tipos de funciones a los que estamos acostumbrados, resultan ser bastante sencillas de programar.
+
+\section{Usar varios scripts}
+Al hacer proyectos o programas grandes en bash, por temas de organización o para facilitar el trabajo en grupo, es posible que nos interese utilizar más de un fichero para nuestro programa. De esta manera, podemos separar cada funcionalidad del proyecto en diferentes scripts y poder entrelazarlos.
+
+Para dar un ejemplo, vamos a crear un fichero que solo tiene funciones definidas, llamado calculadora.sh.
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+suma(){
+	return $(($1 + $2))
+}
+
+mult(){
+	return $(($1 * $2))
+}
+
+and(){
+	return $(($1 & $2))
+}
+
+or(){
+	return $(($1 | $2))
+}
+\end{lstlisting}
+\end{tcolorbox-code}
+Este script no hace "nada", solo tiene unas funciones definidas. El caso es que, si nos vamos a otro script, podemos ejecutar estas funciones desde ese script usando el comando source.
+
+\begin{command-info}
+{source}
+{Carga las funciones y variables de un script a otro.}
+{source <script con funciones/variables>}
+{Ninguna}
+{source --help}
+\end{command-info}
+
+Si ahora nos vamos a un script nuevo y utilizamos el comando source, seremos capaces de usar las funciones de calculadora.sh.
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+#!/bin/bash
+
+source calculadora.sh
+
+suma 9 10
+echo $?
+\end{lstlisting}
+\end{tcolorbox-code}
+
+\begin{tcolorbox-code}
+\begin{lstlisting}
+$ ./script\_nuevo.sh
+19
+\end{lstlisting}
+\end{tcolorbox-code}
+
+Esta es una manera bastante simple de organizar el entorno de un proyecto de buen tamaño, aunque puede tener otros usos. Como mencionamos anteriormente en este tema, bash no tiene un sistema de librerías que proporcionen funciones básicas. Usando source, podemos crear un script que contenga funciones que quizás podrían serte útiles en cualquier otro script que crees. Como una especie de "caja de herramientas", un fichero con utilidades que te hagan escribir menos y ser más eficiente.
+
+\section{Notas finales}
+bash es un lenguaje quizá poco convencional. Al estar pensado para trabajar en un shell, algunas funcionalidades no son comunes o quizá ni existen en otros lenguajes. Tampoco es un lenguaje de "desarrollo". Hacer una aplicación entera con bash es francamente inviable, ya que su sentido no es ese. 
+
+Bash es una herramienta, una forma de tener más control sobre el sistema. Con su enfoque procedimental, podemos aumentar las posibilidades que nos ofrece la línea de comandos. Es posible que no vayas a utilizar este lenguaje en tu vida profesional, pero eso no significa que no tenga valor. Aprender a usar este lenguaje de forma fluida y lógica te obliga a conocer más cómo funciona Linux. Es como muchos otros conceptos de la informática en general. Quizá no te van a ser de utilidad de una forma directa, pero es el conjunto de aprender esos pequeños conceptos los que te convierten en un mejor informático o informática. 
+
+Realmente, lo mismo se aplica con aprender Linux. Linux, en algunos momentos, te va a obligar a darte cabezazos con él hasta que consigas lo que intentabas. Está claro que no todo en Linux es sencillo, pero es esta obligación la que te va a hacer aprender. El valor está en equivocarse, y es muy gratificante darse cuenta de cómo tras haber solucionado un problema difícil, los siguientes problemas que tengas de esa misma dificultad te cuestan menos.
+
+Con esta nota me gustaría terminar este curso. Espero que te haya sido de ayuda. Recuerda que tienes unos ejercicios disponibles en el repositorio de este curso para practicar lo que has aprendido, junto con sus soluciones. Relee todo lo que necesites y recuerda que en el servidor de Discord del curso puedes preguntar todas las dudas que se te ocurran.
+
+\textbf{¡Gracias y buena suerte!}

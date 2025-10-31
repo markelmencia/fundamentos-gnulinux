@@ -1,0 +1,80 @@
+\chapter{Introducción y conceptos básicos}
+\section{¿Qué es GNU/Linux?}
+
+GNU/Linux es un sistema operativo enfocado en ser libre, es decir, en que los usuarios tengan la libertad de usar libremente el software sin ningún tipo de licencia privativa.
+
+Es un sistema operativo resultante de décadas de colaboración entre decenas de miles de desarrolladores/as y cientos de empresas. Los dos proyectos principales que forman este sistema operativo son GNU y el kernel de Linux.
+
+\begin{itemize}
+\item \textbf{GNU}: GNU es un proyecto de software libre creado por Richard Stallman.
+\item \textbf{Linux}: Linux es un kernel creado por Linus Torvalds.
+\end{itemize} 
+
+GNU/Linux está basado en otro sistema operativo llamado UNIX, desarrollado por Bell Labs. UNIX, a diferencia de GNU/Linux, no es software libre.
+
+\section{Contexto histórico}
+En la década de los 80, ante la creciente privatización que surgió en la industria de la tecnología, Richard Stallman creó el proyecto GNU (GNU's not Unix). El objetivo de este proyecto era conseguir desarrollar un sistema operativo totalmente libre.
+
+GNU desarrolló muchos programas, pero le faltaba un nucleo (o kernel), un componente de un sistema operativo esencial para su funcionamiento.
+
+Linus Torvalds, como proyecto personal, comenzó a desarrollar un kernel que se pudiera unir al software ya creado por el proyecto GNU. Es aquí donde surgió la unión entre estos dos proyectos que hoy conocemos como GNU/Linux.
+
+\textbf{Nota:} GNU/Linux suele ser abreviado por la comunidad a solo "Linux", pero es importante recalcar que una gran parte del software que utilizamos junto con Linux fue creado por GNU, como es el caso de bash, coreutils, gcc, y muchos programas más.
+
+Hoy en día, Linux es utilizado en la gran mayoría de servidores y smartphones del mundo, a pesar de la baja cuota de mercado en ordenadores.
+
+Debido a que es un sistema operativo totalmente gratuito, personalizable, seguro y potente, Linux es un sistema operativo muy aclamado por el mundo de la informática.
+
+\section{Filosofía y valores del Free Software}
+Junto con GNU, Richard Stallman creó la Free Software Foundation (FSF), una fundación sin ánimo de lucro con el objetivo de promover el Software Libre. Desde su creación, Stallman y todos los colaboradores/as de la fundación han afirmado que el software libre tiene un impacto más positivo en la sociedad que el software privativo.
+
+Idearon también las cuatro libertades: libertad de Utilizar, Estudiar, Compartir y Mejorar. Estas cuatro libertades son las que necesita ofrecer un software para considerarse libre.
+
+También desarrollaron las licencias "GNU General Public License", unas licencias muy utilizadas en el Software Libre, del tipo "copyleft". Estas licencias se basan en otorgarle al usuario/a las cuatro libertades mencionadas al software que utiliza dicha licencia. Un ejemplo de software que utiliza esta licencia es el kernel de Linux.
+Si te interesa saber más sobre la filosofía de la FSF, puedes consultar la página web del proyecto GNU:
+
+\begin{center}
+https://www.gnu.org/philosophy/philosophy.html
+\end{center}
+
+\section{Componentes clave para Linux}
+Linux, como cualquier otro sistema operativo, es un conjunto de componentes diferentes:
+
+\begin{itemize}
+    \item \textbf{Bootloader}: Un bootloader es el programa que se encarga de iniciar el sistema operativo al iniciarse el arranque, el proceso de encendido del ordenador. A su vez, el bootloader lo inicia la BIOS/UEFI, un programa almacenado en memoria de solo lectura (ROM) situado en la placa madre de nuestro equipo. Una ventaja de los bootloaders es que gracias a ellos podemos instalar varios sistemas operativos en el mismo ordenador, y acceder a ellos en cualquier momento. Uno de los bootloaders más usados es GRUB, creado por el proyecto GNU.
+
+    \item \textbf{Kernel}: Se le puede considerar el "cerebro" del sistema operativo. Se encarga de enlazar el software con el hardware, y es el componente que se encarga de funciones esenciales como la gestión de memoria, la coordinación del procesador, la conexión entre dispositivos de entrada y salida (E/S o I/O en inglés) y mucho más.
+
+    \item \textbf{Jerarquía de archivos}: Un sistema operativo necesita una forma de organizar sus ficheros (o archivos). En el caso de Linux, es una jerarquía sencilla en forma de árbol. Todos los ficheros y los directorios (carpetas) parten de un solo sitio: / (pronunciado "root", porque es la raíz de la jerarquía). Estos son algunos de los directorios dentro de /:
+
+    \begin{itemize}
+        \item \textbf{/bin}: Contiene archivos binarios (ejecutables) de nuestro sistema.
+        \item \textbf{/boot}: Contiene los ficheros del bootloader.
+        \item \textbf{/etc}: Contiene ficheros de configuración.
+        \item \textbf{/dev}: Contiene ficheros relacionados con los dispositivos E/S.
+        \item \textbf{/lib}: Contiene las librerías que usa el sistema.
+        \item \textbf{/home}: Contiene los directorios de cada usuario.
+    \end{itemize}
+
+    	Linux sigue la filosofía "todo es un fichero". Este principio indica que todos los sistemas de funcionamiento dentro de Linux, incluidos los que no tienen que ver con la jerarquía de ficheros, se representan mediante ficheros.
+
+    \item \textbf{Bash (shell), compiladores, y otros programas de GNU}: Son los programas desarrollados por GNU que nos ayudan a interactuar con nuestro sistema. He aquí algunos ejemplos de software creado por GNU:
+
+    \begin{itemize}
+        \item \textbf{GNU Compiler Collection (GCC)}: Gracias a él, podemos compilar código de varios lenguajes.
+        \item \textbf{GNU C Library (glibc)}: Conjunto de librerías estándar de C que utiliza Linux por defecto.
+        \item \textbf{Bash y coreutils}: Conjunto de comandos de terminal.
+        \item \textbf{Programas de utilidad varios}: gdb, emacs, wget, tar…
+        \item \textbf{Entornos de escritorio}: Son un conjunto de programas que gestionan interfaces para el sistema operativo, y la razón por la que los ordenadores de hoy en día no son solo terminales. Uno de los entornos de escritorio más usado es GNOME, desarrollado por GNU.
+    \end{itemize}
+\end{itemize}
+
+\section{Distribuciones}
+Para facilitar el uso de GNU/Linux, la comunidad ha creado incontables versiones del sistema operativo, cada una con diferentes características y funcionalidades. A estas versiones las denominamos distribuciones. Estas son algunas de las más conocidas:
+
+\begin{itemize}
+    \item \textbf{Debian}: Una de las distribuciones más antiguas y más utilizadas por otras distribuciones, como Ubuntu. Debian es conocida por ser muy estable.
+    \item \textbf{Fedora}: Distribución basada en incluir las mayores novedades del software libre a su sistema. Es financiada por Red Hat, una compañía que lleva el software libre al mundo empresarial.
+    \item \textbf{Arch Linux}: Distribución light muy frecuentemente actualizada. Toda la construcción del sistema depende del usuario/a. 
+    \item \textbf{Gentoo}: Sistema muy liberal en cuanto a lo que puedes hacer con el sistema, es muy configurable.
+\end{itemize}
