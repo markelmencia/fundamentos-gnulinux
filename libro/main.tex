@@ -1,14 +1,21 @@
+% NOTE: This latex document must be compiled with xelatex,
+% in order to properly apply the Roboto Mono font.
+
 \documentclass[a4paper,12pt,oneside]{book}
-\usepackage{graphicx}
 \usepackage[a4paper, left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
 \usepackage{tcolorbox}
-\tcbuselibrary{listings, skins}
 \usepackage{listings}
 \usepackage{float}
 \usepackage{caption}
 \usepackage{tocloft}
 \usepackage{hyperref}
+\usepackage{fontspec}
+\usepackage{tcolorbox}
 
+\tcbuselibrary{listings, skins}
+
+% href setup
 \hypersetup{
     colorlinks=true,
     linkcolor=black,
@@ -21,19 +28,29 @@
 \author{Markel Mencía Ramírez}
 \date{Enero 2025}
 
+% Spacing for the table of contents
+\setlength{\cftsecnumwidth}{3em}
 
-\setlength{\cftsecnumwidth}{3em}  % Increase space for section numbers
-
+% Spanish translations to book section titles
 \renewcommand{\contentsname}{Índice}
 \renewcommand{\chaptername}{Capítulo}
 \captionsetup[figure]{name=Imagen}
 
-\usepackage{fontspec}
+% Font
 \setmainfont{RobotoMono-Regular.ttf}[Path=./resources/fonts/, ItalicFont = RobotoMono-Italic.ttf, SlantedFont = RobotoMono-Italic.ttf, BoldFont = RobotoMono-Bold.ttf]
 \setmonofont{RobotoMono-Regular.ttf}[Path=./resources/fonts/, ItalicFont = RobotoMono-Italic.ttf, SlantedFont = RobotoMono-Italic.ttf, BoldFont = RobotoMono-Bold.ttf]
+
+% Paragraph style
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{1em} 
 \renewcommand{\baselinestretch}{1.15}
+
+% Codeblocks
+\newtcolorbox{tcolorbox-code} {
+    colback=black!70!gray,
+    coltext=white,
+    sharp corners
+}
 
 \lstdefinestyle{mystyle}{
     language=bash,
@@ -49,16 +66,10 @@
     showstringspaces=false,
     showtabs=false,
     tabsize=2
-}% -- Setting up the custom style:
+}
 \lstset{style=mystyle}
 
-\usepackage{tcolorbox}
-\newtcolorbox{tcolorbox-code} {
-    colback=black!70!gray,
-    coltext=white,
-    sharp corners
-}
-
+% Command information environment (see chapter 5 and 6) 
 \newenvironment{command-info}[5]
 {
   \noindent\begin{minipage}{\linewidth}
@@ -71,32 +82,9 @@
   \noindent\rule{\linewidth}{1pt}\\
   \end{minipage}
 }
-{
- 
-}
+{}
 
 \begin{document}
-
-\newtcblisting{codeblock}[1][]{
-  colback=black!70!gray,
-  coltext=white,
-  enhanced,
-  sharp corners,
-  boxrule=0pt,
-  listing only,
-  listing options={
-    language=bash,
-    basicstyle=\ttfamily\normalsize\color{white},
-    breaklines=true,
-    columns=fullflexible,
-    keepspaces=true,
-    showstringspaces=false,
-    keywordstyle=\color{cyan},
-    commentstyle=\color{gray},
-    stringstyle=\color{orange},
-  },
-  #1
-}
 
 \begin{titlepage}
     \centering
@@ -107,11 +95,13 @@
     \vspace{1cm}
     {\large Enero 2025\par}
 
+    % Title page footer
     \vfill
     \begin{minipage}{\textwidth}
         \centering
         \raisebox{-0.15\height}{\includegraphics[height=1em]{resources/images/cc_heart.black.png}}
         {\small 2025. Openly licensed via \href{https://creativecommons.org/licenses/by-sa/4.0/}{CC BY-SA}.\par}
+
         {\small \href{https://github.com/markelmencia/fundamentos-gnulinux}{Repositorio del libro}\par}
     \end{minipage}
     
