@@ -192,7 +192,7 @@ Estas variables tienen nombres fijos, y las podemos consultar mediante el comand
 \begin{lstlisting}
 $ printenv
 SHELL=/bin/bash
-XDG\_SEAT=seat0
+XDG_SEAT=seat0
 PWD=/home/oxdecode
 ...
 \end{lstlisting}
@@ -221,7 +221,7 @@ Cualquier lenguaje de programación nos debe permitir realizar operaciones matem
 \begin{lstlisting}
 #!/bin/bash
 
-suma=\((9+10))
+suma=((9+10))
 resto=$((5%2))
 
 echo "9 + 10:" $suma
@@ -251,7 +251,7 @@ Como en otros lenguajes de programación, también existen operaciones a nivel d
 
 or=$(2|4))
 and=$((7&3))
-shift\_left=$((2<<1))
+shift_left=$((2<<1))
 
 echo "2 or 4:" $or
 echo "7 and 3:" $and
@@ -596,7 +596,7 @@ suma 9 10
 
 \begin{tcolorbox-code}
 \begin{lstlisting}
-    \$ ./funciones.sh
+    $ ./funciones.sh
 9 + 10 = 19
 \end{lstlisting}
 \end{tcolorbox-code}
@@ -738,7 +738,7 @@ echo $?
 
 \begin{tcolorbox-code}
 \begin{lstlisting}
-$ ./script\_nuevo.sh
+$ ./script_nuevo.sh
 19
 \end{lstlisting}
 \end{tcolorbox-code}
@@ -748,7 +748,7 @@ Esta es una manera bastante simple de organizar el entorno de un proyecto de bue
 \section{Notas finales}
 bash es un lenguaje quizá poco convencional. Al estar pensado para trabajar en un shell, algunas funcionalidades no son comunes o quizá ni existen en otros lenguajes. Tampoco es un lenguaje de "desarrollo". Hacer una aplicación entera con bash es francamente inviable, ya que su sentido no es ese. 
 
-Bash es una herramienta, una forma de tener más control sobre el sistema. Con su enfoque procedimental, podemos aumentar las posibilidades que nos ofrece la línea de comandos. Es posible que no vayas a utilizar este lenguaje en tu vida profesional, pero eso no significa que no tenga valor. Aprender a usar este lenguaje de forma fluida y lógica te obliga a conocer más cómo funciona Linux. Es como muchos otros conceptos de la informática en general. Quizá no te van a ser de utilidad de una forma directa, pero es el conjunto de aprender esos pequeños conceptos los que te convierten en un mejor informático o informática. 
+Bash es una herramienta, una forma de tener más control sobre el sistema. Con su enfoque procedimental, podemos aumentar lo que nos ofrece la línea de comandos. Es posible que no vayas a utilizar este lenguaje en tu vida profesional, pero eso no significa que no tenga valor. Aprender a usar este lenguaje de forma fluida y lógica te obliga a conocer más cómo funciona Linux. Es como muchos otros conceptos de la informática en general. Quizá no te van a ser de utilidad de una forma directa, pero es el conjunto de aprender esos pequeños conceptos los que te convierten en un mejor informático o informática. 
 
 Realmente, lo mismo se aplica con aprender Linux. Linux, en algunos momentos, te va a obligar a darte cabezazos con él hasta que consigas lo que intentabas. Está claro que no todo en Linux es sencillo, pero es esta obligación la que te va a hacer aprender. El valor está en equivocarse, y es muy gratificante darse cuenta de cómo tras haber solucionado un problema difícil, los siguientes problemas que tengas de esa misma dificultad te cuestan menos.
 

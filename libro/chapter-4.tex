@@ -8,7 +8,7 @@ Una habilidad muy importante para aprender a usar la terminal (y para cualquier 
 
 Para terminar, cabe recalcar la importancia de la práctica. La práctica es la clave para dominar la terminal. Usarla lo máximo posible en tu día a día hará que poco a poco te vayas acostumbrando a su funcionamiento. La mayoría de tus habilidades usando la terminal se conseguirán de forma pasiva, haciendo otras actividades o proyectos en ella.
 
-Una forma muy buena de practicar la terminal es simplemente pasarse a Linux. Para empezar puedes configurar tu máquina para que sea dual boot (sistema operativo dual, en este caso tu sistema operativo habitual + Linux), así puedes probar Linux sin necesariamente eliminar tu SO original.
+Una forma muy buena de practicar la terminal es simplemente pasarse a Linux. Para empezar puedes configurar tu máquina para que sea dual boot (sistema operativo dual, en este caso tu sistema operativo habitual + Linux), así puedes probar Linux sin necesariamente eliminar tu SO original. En el \href{https://github.com/markelmencia/fundamentos-gnulinux}{Repositorio de este curso} existe una guía para instalar Ubuntu con dual boot en un sistema Windows, que permite tener ambos sistemas simultáneamente.
 
 \section{Introducción}
 Una terminal es una Interfaz de Línea de Comandos (CLI, Command Line Interface en inglés). Es la alternativa a las conocidas GUIs (Guided User Interface, las interfaces que utilizamos día a día). Una CLI es una interfaz notablemente más sencilla que una GUI, ya que solo contiene texto.
@@ -52,7 +52,7 @@ Cada comando tiene diferentes argumentos y opciones, por eso es importante consu
 Con estos conocimientos básicos, ya podemos empezar a utilizar la terminal.
 
 \section{Entrando a la terminal}
-La forma de entrar a tu terminal depende de tu Desktop Environment. Por ejemplo, si estás en Ubuntu con GNOME (el DE por defecto de la distribución), basta con acceder al menú y abrir la consola. En muchos Desktop Environments también puedes abrir una terminal con la combinación de teclas ctrl + alt + t.
+La forma de entrar a tu terminal depende de tu Desktop Environment. Por ejemplo, si estás en Ubuntu con GNOME (el DE por defecto de la distribución), basta con acceder al menú y abrir la consola. En muchos Desktop Environments también puedes abrir una terminal con la combinación de teclas \textbf{ctrl + alt + t}.
 
 Al abrir la terminal nos encontraremos con una ventana similar a esta:
 \begin{figure}[H]
@@ -171,7 +171,7 @@ $ cd /home/oxdecode
 \end{lstlisting}
 \end{tcolorbox-code}
 
-En este caso estamos utilizando la dirección absoluta de nuestro directorio para movernos a él. Sin embargo, hay otra forma más rápida de acceder a este directorio. Como hemos mencionado anteriormente, el carácter ~ se suele asociar con nuestro directorio de usuario. Observa:
+En este caso estamos utilizando la dirección absoluta de nuestro directorio para movernos a él. Sin embargo, hay otra forma más rápida de acceder a este directorio. Como hemos mencionado anteriormente, el carácter \textasciitilde{} se suele asociar con nuestro directorio de usuario. Observa:
 
 \begin{tcolorbox-code}
 \begin{lstlisting}
@@ -195,7 +195,7 @@ $ cd ..
 \end{lstlisting}
 \end{tcolorbox-code}
 
-Ten en cuenta que el doble punto se puede usar más de una vez para moverse más hacia atrás. Desde ~, poniendo el doble punto dos veces, llegaríamos a root (el primer doble punto nos llevaría a /home y el segundo a /):
+Ten en cuenta que el doble punto se puede usar más de una vez para moverse más hacia atrás. Desde \textasciitilde, poniendo el doble punto dos veces, llegaríamos a root (el primer doble punto nos llevaría a /home y el segundo a /):
 
 \begin{tcolorbox-code}
 \begin{lstlisting}
@@ -203,7 +203,7 @@ $ ../..
 \end{lstlisting}
 \end{tcolorbox-code}
 
-Cabe mencionar la existencia del comando pwd (Print Working Directory), un comando que nos imprime la dirección absoluta del directorio en el que nos encontramos. Si me encuentro en ~/fotos y ejecuto el comando nos devolvería esto:
+Cabe mencionar la existencia del comando pwd (Print Working Directory), un comando que nos imprime la dirección absoluta del directorio en el que nos encontramos. Si me encuentro en \textasciitilde/fotos y ejecuto el comando nos devolvería esto:
 
 \begin{tcolorbox-code}
 \begin{lstlisting}

@@ -105,21 +105,9 @@ $ touch documentos/2024/mayo/factura.txt
 \end{lstlisting}
 \end{tcolorbox-code}
 
-Este fichero crea en ~/documentos/2024/mayo un fichero llamado "factura" de extensión .txt.
+Este fichero crea en \textasciitilde/documentos/2024/mayo un fichero llamado "factura" de extensión .txt.
 
 Hemos aprendido a crear directorios y ficheros. Más tarde aprenderemos a manejar los permisos de los ficheros, pero por ahora, veamos cómo eliminar ficheros o directorios.
-
-\begin{center}
-  \rule{15cm}{0.4pt}
-\end{center}
-\textbf{rm}\\
-Utilidad: Elimina directorios o ficheros.\\
-Forma de uso general: rm <dirección del directorio o fichero>\\
-Opciones comunes: -r, -d\\
-Ayuda: man rm o rm --help
-\begin{center}
-  \rule{15cm}{0.4pt}
-\end{center}
 
 \begin{command-info}
 {rm}
@@ -204,7 +192,7 @@ $ ls -R ~/documentos
 
 Al usar la opción -R podemos ver el contenido de cada subdirectorio en documentos.
 
-Con la opción -a podemos listar los ficheros ocultos del directorio. Un fichero oculto es un fichero que tiene como primer carácter en el nombre un punto. Para realizar la prueba, vamos a crear un fichero oculto en ~:
+Con la opción -a podemos listar los ficheros ocultos del directorio. Un fichero oculto es un fichero que tiene como primer carácter en el nombre un punto. Para realizar la prueba, vamos a crear un fichero oculto en \textasciitilde:
 
 \begin{tcolorbox-code}
 \begin{lstlisting}
@@ -234,7 +222,7 @@ $ ls -a ~
     \caption{ls -a, nos muestra también los ficheros ocultos.}
 \end{figure}
 
-Fíjate cómo además de .secreto.txt, \~ contiene otros ficheros ocultos que no hemos creado nosotros. Estos ficheros tienen diferentes utilidades, por ejemplo .bash\_history es un log de los comandos que hemos utilizado en la terminal. .bashrc es un script que se ejecuta cuando iniciamos sesión. .bash\_logout se ejecuta cuando se cierra una shell. Para nuestro contexto, estos ficheros no nos interesan, pero pueden ser muy útiles en algunas situaciones.
+Fíjate cómo además de .secreto.txt, \textasciitilde{} contiene otros ficheros ocultos que no hemos creado nosotros. Estos ficheros tienen diferentes utilidades, por ejemplo .bash\_history es un log de los comandos que hemos utilizado en la terminal. .bashrc es un script que se ejecuta cuando iniciamos sesión. .bash\_logout se ejecuta cuando se cierra una shell. Para nuestro contexto, estos ficheros no nos interesan, pero pueden ser muy útiles en algunas situaciones.
 
 Cabe destacar que es posible utilizar más de una opción en un comando, obteniendo así la funcionalidad de ambas opciones:
 
@@ -262,7 +250,7 @@ $ cp documentos/2024/mayo/factura.txt .
 \end{lstlisting}
 \end{tcolorbox-code}
 
-Fíjate cómo en la dirección de destino colocamos nada más que un punto. Este punto representa un "aquí". Cuando colocamos un punto en la dirección de destino estamos indicando que queremos copiar el fichero en el directorio en el que nos encontramos, en este caso en ~.
+Fíjate cómo en la dirección de destino colocamos nada más que un punto. Este punto representa un "aquí". Cuando colocamos un punto en la dirección de destino estamos indicando que queremos copiar el fichero en el directorio en el que nos encontramos, en este caso en \textasciitilde.
 
 Para copiar directorios hay que usar una opción, -r.
 
@@ -284,11 +272,11 @@ mv (MoVe) sigue la misma estructura que cp, pero en vez de copiar el fichero o e
 
 \begin{tcolorbox-code}
 \begin{lstlisting}
-$ mv documentos/2024/mayo/factura.txt ./factura\_mayo\_2024.txt
+$ mv documentos/2024/mayo/factura.txt ./factura_mayo_2024.txt
 \end{lstlisting}
 \end{tcolorbox-code}
 
-En este caso estoy moviendo factura.txt al directorio en el que estoy (~), dándole el nombre de "factura\_mayo\_2024.txt". No hace falta cambiar el directorio del fichero para cambiar su nombre:
+En este caso estoy moviendo factura.txt al directorio en el que estoy (\textasciitilde), dándole el nombre de "factura\_mayo\_2024.txt". No hace falta cambiar el directorio del fichero para cambiar su nombre:
 
 \begin{tcolorbox-code}
 \begin{lstlisting}
@@ -352,7 +340,7 @@ Le damos a ctrl + o y escribimos la dirección.
     \caption{Entrada de dirección del fichero.}
 \end{figure}
 
-\textbf{Nota:} En apartados anteriores hubo un ejemplo en el que movimos este fichero a ~, así que si estás ejecutando los comandos de estos apuntes en tu máquina, tendrás dos facturas, una en ~ y otra en ~/documentos/2024/mayo/, y en este ejemplo no estarás sobreescribiendo el fichero, lo estarías creando de nuevo en el directorio "mayo". Sin embargo, el resultado no cambia.
+\textbf{Nota:} En apartados anteriores hubo un ejemplo en el que movimos este fichero a \textasciitilde, así que si estás ejecutando los comandos de estos apuntes en tu máquina, tendrás dos facturas, una en \textasciitilde{} y otra en \textasciitilde/documentos/2024/mayo/, y en este ejemplo no estarás sobreescribiendo el fichero, lo estarías creando de nuevo en el directorio "mayo". Sin embargo, el resultado no cambia.
 
 Ahora que hemos aprendido a escribir archivos, vamos a aprender a leerlos sin usar un editor de texto:
 
@@ -1182,7 +1170,7 @@ Existe también una forma de redireccionar la salida de errores a la salida conv
 
 \begin{tcolorbox-code}
 \begin{lstlisting}
-$ expr 3 + 5 > out.txt 2>\&1
+$ expr 3 + 5 > out.txt 2>&1
 \end{lstlisting}
 \end{tcolorbox-code}
 
