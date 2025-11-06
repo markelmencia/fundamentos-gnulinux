@@ -3,8 +3,6 @@
 
 \documentclass[a4paper,12pt,oneside]{book}
 \usepackage[a4paper, left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
-\usepackage{polyglossia}
-\setmainlanguage{spanish}
 
 \usepackage{graphicx}
 \usepackage{tcolorbox}
@@ -15,6 +13,9 @@
 \usepackage{hyperref}
 \usepackage{fontspec}
 \usepackage{tcolorbox}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{spanish}
 
 \tcbuselibrary{listings, skins}
 
@@ -34,14 +35,12 @@
 % Spacing for the table of contents
 \setlength{\cftsecnumwidth}{3em}
 
-% Spanish translations to book section titles
-\renewcommand{\contentsname}{Índice}
-\renewcommand{\chaptername}{Capítulo}
-\captionsetup[figure]{name=Imagen}
-
 % Font
 \setmainfont{RobotoMono-Regular.ttf}[Path=./resources/fonts/, ItalicFont = RobotoMono-Italic.ttf, SlantedFont = RobotoMono-Italic.ttf, BoldFont = RobotoMono-Bold.ttf]
 \setmonofont{RobotoMono-Regular.ttf}[Path=./resources/fonts/, ItalicFont = RobotoMono-Italic.ttf, SlantedFont = RobotoMono-Italic.ttf, BoldFont = RobotoMono-Bold.ttf]
+
+% Avoids the necessity of hyphening
+\sloppy
 
 % Paragraph style
 \setlength{\parindent}{0pt}
@@ -107,7 +106,6 @@
 
         {\small \href{https://github.com/markelmencia/fundamentos-gnulinux}{Repositorio del libro}\par}
     \end{minipage}
-    
 \end{titlepage}
 
 \tableofcontents
