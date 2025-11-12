@@ -11,7 +11,7 @@ Para facilitar el aprendizaje de GNU/Linux, este curso ofrece:
 
 - Un **libro de apuntes** con diferentes temas del sistema en formato **PDF**.
 - Una serie de **ejercicios** con soluciones, tanto temáticos como sueltos, disponibles en este repositorio (más información en el directorio `ejercicios`).
-- Un **manual de instalación** de la distribución de **Ubuntu Desktop** con Windows (mediante **Dual Boot**), accesible desde [Google Docs](https://docs.google.com/document/d/1W6Rq2tVAha_787HKFZK8qvAA6RqIss2WUu_ikEVuFsY/edit?usp=sharing) o en formato **PDF**.
+- Un **manual de instalación** de la distribución de **Ubuntu Desktop**, también en formato **PDF**.
 
 ### Libro de apuntes
 El libro de apuntes consta de cinco temas sobre diferentes áreas de Linux.
