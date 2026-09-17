@@ -40,3 +40,6 @@ Siguiendo la filosofía de GNU/Linux, este curso también es **libre y gratuito*
 - Página web del proyecto GNU: https://www.gnu.org/home.es.html
 - Repositorio del kernel de Linux: https://github.com/torvalds/linux
 - Página web oficial de Ubuntu: https://ubuntu.com/
+
+## Licencias
+Este repositorio tiene dos licencias. La del libro, CC-BY-SA-4.0, y la de los ejercicios, GNU GPLv3. Consulta los ficheros LICENSE para más información.
